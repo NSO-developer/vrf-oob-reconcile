@@ -1,0 +1,26 @@
+<config xmlns="http://tail-f.com/ns/config/1.0">
+  <devices xmlns="http://tail-f.com/ns/ncs">
+  <device>
+    <name>xr0</name>
+      <config>
+      <vrf xmlns="http://tail-f.com/ned/cisco-ios-xr">
+      <vrf-list>
+        <name>TEST-1</name>
+          <address-family>
+          <ipv4>
+          <unicast>
+          <maximum>
+            <prefix>
+              <limit>1000</limit>
+              <mid-thresh>50</mid-thresh>
+            </prefix>
+          </maximum>
+          </unicast>
+          </ipv4>
+          </address-family>
+      </vrf-list>
+      </vrf>
+      </config>
+  </device>
+  </devices>
+</config>

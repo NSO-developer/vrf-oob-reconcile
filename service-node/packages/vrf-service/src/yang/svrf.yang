@@ -1,0 +1,124 @@
+module svrf {
+
+  namespace "http://example.com/svrf";
+  prefix svrf;
+
+  import ietf-inet-types {
+    prefix inet;
+  }
+  import tailf-common {
+    prefix tailf;
+  }
+  import tailf-ncs {
+    prefix ncs;
+  }
+
+  description
+    "VRF Service";
+
+  revision 2018-06-01 {
+    description
+      "Initial revision.";
+  }
+
+  ///////////////////////////////////////////////////
+  // VRF Device Table
+  ///////////////////////////////////////////////////
+  container vrf-devices {
+
+     list devices {
+       key name;
+       leaf name {
+         type string;
+       }
+       leaf node {
+         type string;
+         mandatory true;
+       }
+     }
+  }
+
+  ///////////////////////////////////////////////////
+  // Service
+  ///////////////////////////////////////////////////
+  augment "/ncs:services" {
+
+    list vrf {
+      description "VRF Service";
+
+      key name;
+      leaf name {
+        tailf:info "Unique service id";
+        tailf:cli-allow-range;
+        type string;
+      }
+
+      uses ncs:service-data;
+      ncs:servicepoint vrf-servicepoint;
+       
+      leaf description {
+          type string;
+      }
+
+      list devices {
+        key name;
+
+        leaf name {
+          type leafref {
+             path "/svrf:vrf-devices/devices/svrf:name";
+          }
+        }
+        
+        leaf route-distinguisher {
+          type string;
+        }
+
+        list import-route-target {
+          key name;
+          leaf name { 
+            type string;
+          }
+        }
+        list export-route-target {
+          key name;
+          leaf name {
+            type string;
+          }
+        }
+        leaf import-route-policy {
+          type string;
+        }
+        leaf export-route-policy {
+          type string;
+        }
+        leaf max-prefix-limit {
+          type uint16;
+        }
+        leaf max-prefix-threshold {
+          type uint16;
+        }
+      }
+      ///////////////////////////////////////////////////////////
+      // Service oob-reconcile action
+      ///////////////////////////////////////////////////////////
+      tailf:action oob-reconcile {
+          tailf:info "Reconcile out-of-band changes";
+          tailf:actionpoint vrf-reconcile-point;
+            input {
+              leaf attach {
+                type empty;
+              }
+            }
+            output {
+              leaf status {
+                type string;
+              }
+              leaf error-message {
+                type string;
+              }
+             
+            }
+      }
+    }
+  }
+}

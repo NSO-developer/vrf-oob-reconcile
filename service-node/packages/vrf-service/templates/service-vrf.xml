@@ -1,0 +1,36 @@
+<config-template xmlns="http://tail-f.com/ns/config/1.0">
+    <devices xmlns="http://tail-f.com/ns/ncs">
+       <?save-context vrf?>
+       <?set VRF = {name} ?>
+       <?set DESC = {description}?>
+       <?foreach {/devices} ?>
+          <?save-context vrf?>
+          <?set-context-node {deref(name)/..}?>
+          <?set NODE = {node} ?>
+          <?switch-context vrf?>
+          <device>
+            <name>{$NODE}</name>
+            <config>
+                <vrf xmlns="http://example.com/vrf">
+                  <name>{$VRF}</name>
+                  <description>{$DESC}</description>
+                  <devices>
+                     <name>{name}</name>
+                     <route-distinguisher>{route-distinguisher}</route-distinguisher>
+                     <import-route-target>
+                         <name>{import-route-target/name}</name>
+                     </import-route-target>
+                     <export-route-target>
+                         <name>{export-route-target/name}</name>
+                     </export-route-target>
+                     <import-route-policy>{import-route-policy}</import-route-policy>
+                     <export-route-policy>{export-route-policy}</export-route-policy>
+                     <max-prefix-limit>{max-prefix-limit}</max-prefix-limit>
+                     <max-prefix-threshold>{max-prefix-threshold}</max-prefix-threshold>
+                  </devices>
+                </vrf>
+            </config>
+          </device>
+       <?end?>
+    </devices>
+</config-template>

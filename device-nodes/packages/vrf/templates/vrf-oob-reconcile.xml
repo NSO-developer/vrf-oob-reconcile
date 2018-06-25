@@ -1,0 +1,35 @@
+<config-template xmlns="http://tail-f.com/ns/config/1.0">
+ <? set VRF = {name}?>
+  <vrf xmlns="http://example.com/vrf">
+      <name>{$VRF}</name>
+      <?foreach {devices}?>
+        <?set DEVICE ={name}?>
+      <devices>
+        <name>{name}</name>
+        <?save-context vrf-service?>
+        <import-route-target tags="delete">
+          <name>{import-route-target}</name>
+        </import-route-target>
+        <export-route-target tags="delete">
+          <name>{export-route-target}</name>
+        </export-route-target>
+        <?switch-context vrf-service?>
+        
+        <?set-context-node {../../ncs:devices/ncs:device[name=$DEVICE]/config/vrf/vrf-list[name=$VRF]}?>
+        <route-distinguisher>{rd}</route-distinguisher>
+        <import-route-target tags="replace">
+          <name>{address-family/ipv4/unicast/import/route-target/address-list}</name>
+        </import-route-target>
+        <export-route-target tags="replace">
+          <name>{address-family/ipv4/unicast/export/route-target/address-list}</name>
+        </export-route-target>
+        <import-route-policy>{address-family/ipv4/unicast/import/route-policy}</import-route-policy>
+        <export-route-policy>{address-family/ipv4/unicast/export/route-policy}</export-route-policy>
+        <max-prefix-limit>{address-family/ipv4/unicast/maximum/prefix/limit}</max-prefix-limit>
+        <max-prefix-threshold>{address-family/ipv4/unicast/maximum/prefix/mid-thresh}</max-prefix-threshold>
+        <?switch-context vrf-service?>
+      </devices>
+      <?end?>
+  </vrf>
+
+</config-template>

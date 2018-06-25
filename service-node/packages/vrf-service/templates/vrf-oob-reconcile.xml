@@ -1,0 +1,23 @@
+<config-template xmlns="http://tail-f.com/ns/config/1.0">
+  <services xmlns="http://tail-f.com/ns/ncs">
+    <vrf xmlns="http://example.com/svrf">
+      <name>{$VRF}</name>
+      <?foreach {devices}?>
+         <devices>
+           <name>{name}</name>
+           <import-route-target tags="replace">
+             <name>{import-route-target}</name>
+           </import-route-target>
+           <export-route-target tags="replace">
+             <name>{export-route-target}</name>
+           </export-route-target>
+           <import-route-policy>{import-route-policy}</import-route-policy>
+           <export-route-policy>{export-route-policy}</export-route-policy>
+           <max-prefix-limit>{max-prefix-limit}</max-prefix-limit>
+           <max-prefix-threshold>{max-prefix-threshold}</max-prefix-threshold>
+           <route-distinguisher>{route-distinguisher}</route-distinguisher>
+         </devices>
+      <?end?>
+    </vrf>
+  </services>
+</config-template>

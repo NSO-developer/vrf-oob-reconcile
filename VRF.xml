@@ -1,0 +1,38 @@
+<config xmlns="http://tail-f.com/ns/config/1.0">
+  <services xmlns="http://tail-f.com/ns/ncs">
+  <vrf xmlns="http://example.com/svrf">
+    <name>TEST-1</name>
+    <description>NSO created VRF</description>
+    <devices>
+      <name>xr0</name>
+      <route-distinguisher>6500:100</route-distinguisher>
+      <import-route-policy>TEST-1-IMPORT</import-route-policy>
+      <import-route-target>
+         <name>6500:101</name>
+      </import-route-target>
+      <import-route-target>
+         <name>6500:102</name>
+      </import-route-target>
+      <import-route-target>
+         <name>6500:103</name>
+      </import-route-target>
+      <export-route-policy>TEST-1-EXPORT</export-route-policy>
+    </devices>
+    <devices>
+      <name>xr1</name>
+      <route-distinguisher>6500:200</route-distinguisher>
+      <import-route-policy>TEST-1-IMPORT</import-route-policy>
+      <import-route-target>
+         <name>6500:201</name>
+      </import-route-target>
+      <import-route-target>
+         <name>6500:202</name>
+      </import-route-target>
+      <import-route-target>
+         <name>6500:203</name>
+      </import-route-target>
+      <export-route-policy>TEST-1-EXPORT</export-route-policy>
+    </devices>
+  </vrf>
+ </services>
+</config>

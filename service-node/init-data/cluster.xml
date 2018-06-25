@@ -1,0 +1,84 @@
+<config xmlns="http://tail-f.com/ns/config/1.0">
+  <cluster xmlns="http://tail-f.com/ns/ncs">
+    <remote-node>
+      <name>nso-1</name>
+      <address>127.0.0.1</address>
+      <port>2223</port>
+      <ssh>
+        <host-key>
+          <algorithm>ssh-dss</algorithm>
+          <key-data>AAAAB3NzaC1kc3MAAACBAIPw8zDCKA3gt9uqurUqesGL7tG1K33KJn+2+airrhJ1Gs9FlLZ7
+9OqeGF24dYKpS7r3tTj+TaXEeCbbKmMop80Kv7+TeTsFvzN07mvnqTY0urcNuXJLw0qTo1Wz
+4GwN5vUPl1H3w02bJ5/IKV5B48xzCE6s5uahYDg7yRPbSLJDAAAAFQCoGdCencAkVimZi00Q
+ctCWNeSoBwAAAIBv8NAENFvzbEvhltg27hRrmbqB+xdTqWzQpbMB4bRqVadLAa+eImtKK5Ye
+MbXLUzaTrbCjBBtDFi8FEYCDqKOgx6xqVqLGZ2ewRwBfx7KIiLaBmb37Sqw7MATyUXQ6vUCm
+JLvtxVoPk26fMopIY8v302GEX98rmD7eyazZzV0lsAAAAIAa1LZK3D3dYq4x6mlgV90RC+7m
+Ha/SRsOchGw2vB/mNVVYUrkWzoUiIyjiAzXM9T990nPcp4RMYyKceNx18Wwc86G8Ou0XjZIk
+DQmqi45i3f1atO+F4LN+OAvXFEVT22cPEbI01c8N0ypqDB8XO+aXwi93mylPP9CbQQoveLaW
+7Q==</key-data>
+        </host-key>
+      </ssh>
+      <authgroup>default</authgroup>
+      <username>admin</username>
+    </remote-node>
+    <remote-node>
+      <name>nso-2</name>
+      <address>127.0.0.1</address>
+      <port>2226</port>
+      <ssh>
+        <host-key>
+          <algorithm>ssh-dss</algorithm>
+          <key-data>AAAAB3NzaC1kc3MAAACBAIPw8zDCKA3gt9uqurUqesGL7tG1K33KJn+2+airrhJ1Gs9FlLZ7
+9OqeGF24dYKpS7r3tTj+TaXEeCbbKmMop80Kv7+TeTsFvzN07mvnqTY0urcNuXJLw0qTo1Wz
+4GwN5vUPl1H3w02bJ5/IKV5B48xzCE6s5uahYDg7yRPbSLJDAAAAFQCoGdCencAkVimZi00Q
+ctCWNeSoBwAAAIBv8NAENFvzbEvhltg27hRrmbqB+xdTqWzQpbMB4bRqVadLAa+eImtKK5Ye
+MbXLUzaTrbCjBBtDFi8FEYCDqKOgx6xqVqLGZ2ewRwBfx7KIiLaBmb37Sqw7MATyUXQ6vUCm
+JLvtxVoPk26fMopIY8v302GEX98rmD7eyazZzV0lsAAAAIAa1LZK3D3dYq4x6mlgV90RC+7m
+Ha/SRsOchGw2vB/mNVVYUrkWzoUiIyjiAzXM9T990nPcp4RMYyKceNx18Wwc86G8Ou0XjZIk
+DQmqi45i3f1atO+F4LN+OAvXFEVT22cPEbI01c8N0ypqDB8XO+aXwi93mylPP9CbQQoveLaW
+7Q==</key-data>
+        </host-key>
+      </ssh>
+      <authgroup>default</authgroup>
+      <username>admin</username>
+    </remote-node>
+    <remote-node>
+      <name>nso-3</name>
+      <address>127.0.0.1</address>
+      <port>2225</port>
+      <ssh>
+        <host-key>
+          <algorithm>ssh-dss</algorithm>
+          <key-data>AAAAB3NzaC1kc3MAAACBAIPw8zDCKA3gt9uqurUqesGL7tG1K33KJn+2+airrhJ1Gs9FlLZ7
+9OqeGF24dYKpS7r3tTj+TaXEeCbbKmMop80Kv7+TeTsFvzN07mvnqTY0urcNuXJLw0qTo1Wz
+4GwN5vUPl1H3w02bJ5/IKV5B48xzCE6s5uahYDg7yRPbSLJDAAAAFQCoGdCencAkVimZi00Q
+ctCWNeSoBwAAAIBv8NAENFvzbEvhltg27hRrmbqB+xdTqWzQpbMB4bRqVadLAa+eImtKK5Ye
+MbXLUzaTrbCjBBtDFi8FEYCDqKOgx6xqVqLGZ2ewRwBfx7KIiLaBmb37Sqw7MATyUXQ6vUCm
+JLvtxVoPk26fMopIY8v302GEX98rmD7eyazZzV0lsAAAAIAa1LZK3D3dYq4x6mlgV90RC+7m
+Ha/SRsOchGw2vB/mNVVYUrkWzoUiIyjiAzXM9T990nPcp4RMYyKceNx18Wwc86G8Ou0XjZIk
+DQmqi45i3f1atO+F4LN+OAvXFEVT22cPEbI01c8N0ypqDB8XO+aXwi93mylPP9CbQQoveLaW
+7Q==</key-data>
+        </host-key>
+      </ssh>
+      <authgroup>default</authgroup>
+      <username>admin</username>
+    </remote-node>
+    <authgroup>
+      <name>default</name>
+      <default-map>
+        <same-user/>
+        <same-pass/>
+      </default-map>
+      <umap>
+        <local-user>admin</local-user>
+        <same-user/>
+        <remote-password>$8$zDCJt8AlGmsS7Nr8GLARCXM7NlX4mI/6HO/GCmhiN4g=</remote-password>
+      </umap>
+      <umap>
+        <local-user>oper</local-user>
+        <same-user/>
+        <remote-password>$8$2nVJZ0hzUHpn13S+r86bXeVEqqnVGbaZGAr+uRS4u/c=</remote-password>
+      </umap>
+    </authgroup>
+  </cluster>
+</config>

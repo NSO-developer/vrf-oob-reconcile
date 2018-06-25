@@ -1,0 +1,20 @@
+<config xmlns="http://tail-f.com/ns/config/1.0">
+  <vrf-devices xmlns="http://example.com/svrf">
+  <devices>
+    <name>xr0</name>
+    <node>nso-1</node>
+  </devices>
+  <devices>
+    <name>xr1</name>
+    <node>nso-2</node>
+  </devices>
+  <devices>
+    <name>xr2</name>
+    <node>nso-1</node>
+  </devices>
+  <devices>
+    <name>xr3</name>
+    <node>nso-2</node>
+  </devices>
+  </vrf-devices>
+</config>

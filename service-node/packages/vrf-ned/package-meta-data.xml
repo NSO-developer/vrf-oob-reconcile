@@ -1,0 +1,17 @@
+<ncs-package xmlns="http://tail-f.com/ns/ncs-packages">
+  <name>vrfned</name>
+  <package-version>1.0</package-version>
+  <description>VRF NED</description>
+  <ncs-min-version>4.5</ncs-min-version>
+  
+  <component>
+    <name>vrf-ned</name>
+    <ned>
+      <netconf/>
+      <device>
+        <vendor>Acme</vendor>
+      </device>
+    </ned>
+  </component>
+
+</ncs-package>

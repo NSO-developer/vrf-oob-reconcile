@@ -1,0 +1,52 @@
+<config-template xmlns="http://tail-f.com/ns/config/1.0">
+  <devices xmlns="http://tail-f.com/ns/ncs">
+
+       <?save-context vrf?>
+       <?set VRF = {name} ?>
+       <?foreach {/devices} ?>
+
+         <device>
+            <name tags="nocreate">{name}</name>
+            <config>
+               <vrf xmlns="http://tail-f.com/ned/cisco-ios-xr">
+                 <vrf-list tags="merge">
+                   <name>{$VRF}</name>
+                   <description>{../description}</description>
+                   <rd>{route-distinguisher}</rd>
+                   <address-family>
+                     <ipv4>
+                       <unicast>
+                         <import>
+                           <route-policy>{import-route-policy}</route-policy>
+                           <route-target foreach="{import-route-target}">
+                              <address-list>
+                                 <name>{name}</name>
+                              </address-list>
+                           </route-target>
+                         </import>
+                         <export>
+                           <route-policy>{export-route-policy}</route-policy>
+                           <route-target foreach="{exportRouteTarget}">
+                              <address-list>
+                                <name>{name}</name>
+                              </address-list>
+                           </route-target>
+                         </export>
+                         <maximum>
+                            <prefix>
+                               <limit>{max-prefix-limit}</limit>
+                               <mid-thresh>{max-prefix-threshold}</mid-thresh>
+                            </prefix>
+                        </maximum>
+                       </unicast>
+                     </ipv4>
+                   </address-family>
+                 </vrf-list>
+               </vrf>
+            </config>
+         </device>
+
+       <?end?>
+
+  </devices>
+</config-template>
