@@ -31,3 +31,50 @@ the following components.
 
 # Running the demonstration
 
+## Start the demonstration
+  First start up the 3 node simulation and the 4 netsim devices
+
+  make start
+
+## Log into the service node and create the VRF service
+
+   ncs_cli -u admin
+
+   admin@srv-nso> config
+   Entering configuration mode private
+   [ok][2018-06-26 10:55:56]
+
+   [edit]
+   admin@srv-nso% load merge VRF.xml
+   [ok][2018-06-26 10:52:30]
+
+   [edit]
+   admin@srv-nso% show services vrf 
+   vrf TEST-1 {
+      description "NSO created VRF";
+      devices xr0 {
+          route-distinguisher 6500:100;
+          import-route-target 6500:101;
+          import-route-target 6500:102;
+          import-route-target 6500:103;
+          import-route-policy TEST-1-IMPORT;
+          export-route-policy TEST-1-EXPORT;
+      }
+      devices xr1 {
+          route-distinguisher 6500:200;
+          import-route-target 6500:201;
+          import-route-target 6500:202;
+          import-route-target 6500:203;
+          import-route-policy TEST-1-IMPORT;
+          export-route-policy TEST-1-EXPORT;
+      }
+   }
+   [ok][2018-06-26 10:52:34]
+
+   [edit]
+   admin@srv-nso% commit
+   Commit complete.
+   [ok][2018-06-26 10:52:52]
+
+   [edit]
+   admin@srv-nso%
