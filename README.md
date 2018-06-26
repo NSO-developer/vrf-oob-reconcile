@@ -31,12 +31,12 @@ the following components.
 
 # Running the demonstration
 
-## Start the demonstration
+## Execute the reconcile demonstration
   First start up the 3 node simulation and the 4 netsim devices
 
   make start
 
-## Log into the service node and create the VRF service
+### Log into the service node and create the VRF service
 <pre>
    ncs_cli -u admin  
 
