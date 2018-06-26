@@ -79,7 +79,7 @@ the following components.
    [edit]
    admin@srv-nso%
 </pre>
-## Log into the device node 1 
+## Log into nso-1 and modify the service configuration
 <pre>
   % ncs_cli -u admin -P 4692
 
@@ -136,4 +136,101 @@ the following components.
 
   [edit]
   admin@nso-1%
+</pre>
+
+## From the service node verify the service is now out of sync
+<pre>
+  admin@srv-nso> request services vrf TEST-1 check-sync 
+  Error: Network Element Driver: device nso-1: out of sync
+  [error][2018-06-26 11:35:27]
+  admin@srv-nso> *** ALARM out-of-sync: Device nso-1 is out of sync
+  admin@srv-nso> request devices sync-from             
+    sync-result {
+      device nso-1
+      result true
+    }
+    sync-result {
+      device nso-2
+      result true
+    }
+  [ok][2018-06-26 11:35:36]
+  admin@srv-nso> request services vrf TEST-1 check-sync 
+  in-sync false
+  [ok][2018-06-26 11:35:41]
+  admin@srv-nso> request services vrf TEST-1 re-deploy dry-run 
+  cli {
+      lsa-node {
+          name nso-1
+          data  devices {
+                     device xr0 {
+                         config {
+                             cisco-ios-xr:vrf {
+                                 vrf-list TEST-1 {
+                                     address-family {
+                                         ipv4 {
+                                             unicast {
+                                                 import {
+                                                     route-target {
+                -                                        address-list 6500:300 {
+                -                                        }
+                                                     }
+                                                 }
+                                                 maximum {
+                                                     prefix {
+                -                                        limit 1000;
+                -                                        mid-thresh 50;
+                                                     }
+                                                 }
+                                             }
+                                         }
+                                     }
+                               }
+                             }
+                         }
+                     }
+                 }
+               
+    }
+  }
+</pre>
+## From the service node execute the out-of-band reconcile command
+<pre>
+  [ok][2018-06-26 11:35:53]
+  admin@srv-nso> 
+  admin@srv-nso> request services vrf TEST-1 oob-reconcile 
+  status success
+  [ok][2018-06-26 11:39:25]
+  admin@srv-nso> 
+  System message at 2018-06-26 11:39:25...
+  Commit performed by admin via tcp using OOB-REC-TEST-1.
+  admin@srv-nso>
+</pre>
+## From the service node display the updated service configuration
+<pre>
+  Display the service configuration and verify the newly
+  reconciled values are now part of the service configuration
+
+  admin@srv-nso> show configuration services vrf TEST-1 
+  description "NSO created VRF";
+  devices xr0 {
+      route-distinguisher  6500:100;
+      import-route-target 6500:101;
+      import-route-target 6500:102;
+      import-route-target 6500:103;
+      import-route-target 6500:300;
+      import-route-policy  TEST-1-IMPORT;
+      export-route-policy  TEST-1-EXPORT;
+      max-prefix-limit     1000;
+      max-prefix-threshold 50;
+  }
+  devices xr1 {
+      route-distinguisher 6500:200;
+      import-route-target 6500:201;
+      import-route-target 6500:202;
+      import-route-target 6500:203;
+      import-route-policy TEST-1-IMPORT;
+      export-route-policy TEST-1-EXPORT;
+  }
+  [ok][2018-06-26 11:39:56]
+  admin@srv-nso> 
 </pre>
