@@ -217,7 +217,7 @@ the following components.
       import-route-target 6500:101;
       import-route-target 6500:102;
       import-route-target 6500:103;
-      import-route-target 6500:300;
+      **import-route-target 6500:300;**
       import-route-policy  TEST-1-IMPORT;
       export-route-policy  TEST-1-EXPORT;
       max-prefix-limit     1000;
