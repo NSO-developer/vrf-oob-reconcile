@@ -193,7 +193,7 @@ the following components.
     }
   }
 </pre>
-## Step(4) Execute the out-of-band reconcile command
+### Step(4) Execute the out-of-band reconcile command
 <pre>
   [ok][2018-06-26 11:35:53]
   admin@srv-nso> 
@@ -205,7 +205,7 @@ the following components.
   Commit performed by admin via tcp using OOB-REC-TEST-1.
   admin@srv-nso>
 </pre>
-## Step(5) Display the updated service configuration
+### Step(5) Display the updated service configuration
 <pre>
   Display the service configuration and verify the newly
   reconciled values are now part of the service configuration
@@ -217,11 +217,11 @@ the following components.
       import-route-target 6500:101;
       import-route-target 6500:102;
       import-route-target 6500:103;
-      **import-route-target 6500:300;**
+      import-route-target 6500:300;  <==== Added
       import-route-policy  TEST-1-IMPORT;
       export-route-policy  TEST-1-EXPORT;
-      max-prefix-limit     1000;
-      max-prefix-threshold 50;
+      max-prefix-limit     1000; <=== Added
+      max-prefix-threshold 50;   <=== Added
   }
   devices xr1 {
       route-distinguisher 6500:200;
@@ -233,4 +233,10 @@ the following components.
   }
   [ok][2018-06-26 11:39:56]
   admin@srv-nso> 
+
+
+  The reconcile operation is complete. You can also cause the reconcile
+  operation to fail by set the description field in the VRF which isn't
+  automatically reconciled. (load merge DESC.xml on the device node 
+  and repeat the above steps)
 </pre>
