@@ -38,26 +38,26 @@ the following components.
 
 ## Log into the service node and create the VRF service
 
-   ncs_cli -u admin
+   ncs_cli -u admin  
 
-   admin@srv-nso> config
-   Entering configuration mode private
-   [ok][2018-06-26 10:55:56]
-
-   [edit]
-   admin@srv-nso% load merge VRF.xml
-   [ok][2018-06-26 10:52:30]
-
-   [edit]
-   admin@srv-nso% show services vrf 
-   vrf TEST-1 {
-      description "NSO created VRF";
-      devices xr0 {
-          route-distinguisher 6500:100;
-          import-route-target 6500:101;
-          import-route-target 6500:102;
-          import-route-target 6500:103;
-          import-route-policy TEST-1-IMPORT;
+   admin@srv-nso> config  
+   Entering configuration mode private  
+   [ok][2018-06-26 10:55:56]  
+  
+   [edit]  
+   admin@srv-nso% load merge VRF.xml  
+   [ok][2018-06-26 10:52:30]  
+  
+   [edit]  
+   admin@srv-nso% show services vrf   
+   vrf TEST-1 {  
+      description "NSO created VRF";  
+      devices xr0 {  
+          route-distinguisher 6500:100;  
+          import-route-target 6500:101;  
+          import-route-target 6500:102;  
+          import-route-target 6500:103;  
+          import-route-policy TEST-1-IMPORT;  
           export-route-policy TEST-1-EXPORT;
       }
       devices xr1 {
