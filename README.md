@@ -36,7 +36,7 @@ the following components.
 
   make start
 
-### Log into the service node and create the VRF service
+### Step(1) Log into the service node and create the VRF service
 <pre>
    ncs_cli -u admin  
 
@@ -79,7 +79,7 @@ the following components.
    [edit]
    admin@srv-nso%
 </pre>
-## Log into nso-1 and modify the service configuration
+### Step(2) Log into nso-1 and modify the service configuration
 <pre>
   % ncs_cli -u admin -P 4692
 
@@ -138,7 +138,7 @@ the following components.
   admin@nso-1%
 </pre>
 
-## From the service node verify the service is now out of sync
+### Step(3) Verify the service is now out of sync
 <pre>
   admin@srv-nso> request services vrf TEST-1 check-sync 
   Error: Network Element Driver: device nso-1: out of sync
@@ -193,7 +193,7 @@ the following components.
     }
   }
 </pre>
-## From the service node execute the out-of-band reconcile command
+## Step(4) Execute the out-of-band reconcile command
 <pre>
   [ok][2018-06-26 11:35:53]
   admin@srv-nso> 
@@ -205,7 +205,7 @@ the following components.
   Commit performed by admin via tcp using OOB-REC-TEST-1.
   admin@srv-nso>
 </pre>
-## From the service node display the updated service configuration
+## Step(5) Display the updated service configuration
 <pre>
   Display the service configuration and verify the newly
   reconciled values are now part of the service configuration
