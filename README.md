@@ -79,3 +79,61 @@ the following components.
    [edit]
    admin@srv-nso%
 </pre>
+## Log into the device node 1 
+<pre>
+  % ncs_cli -u admin -P 4692
+
+  admin connected from 127.0.0.1 using console on DANISULL-M-73NJ
+  admin@nso-1> 
+  admin@nso-1> configure 
+  Entering configuration mode private
+  [ok][2018-06-26 11:13:44]
+
+  [edit]
+  admin@nso-1% load merge MAX.xml
+  [ok][2018-06-26 11:13:55]
+
+  [edit]
+  admin@nso-1% load merge ROUTE-TARGET.xml 
+  [ok][2018-06-26 11:14:02]
+
+  [edit]
+  admin@nso-1% show | compare
+    devices {
+       device xr0 {
+           config {
+               cisco-ios-xr:vrf {
+                   vrf-list TEST-1 {
+                       address-family {
+                           ipv4 {
+                               unicast {
+                                   import {
+                                       route-target {
+  +                                        address-list 6500:300 {
+  +                                        }
+                                       }
+                                   }
+                                   maximum {
+                                       prefix {
+  +                                        limit 1000;
+  +                                        mid-thresh 50;
+                                       }
+                                   }
+                               }
+                           }
+                       }
+                   }
+               }
+           }
+       }
+   }
+  [ok][2018-06-26 11:14:08]
+
+  [edit]
+  admin@nso-1% commit
+  Commit complete.
+  [ok][2018-06-26 11:16:48]
+
+  [edit]
+  admin@nso-1%
+</pre>
