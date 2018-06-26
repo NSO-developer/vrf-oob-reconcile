@@ -37,7 +37,7 @@ the following components.
   make start
 
 ## Log into the service node and create the VRF service
-
+<pre>
    ncs_cli -u admin  
 
    admin@srv-nso> config  
@@ -78,3 +78,4 @@ the following components.
 
    [edit]
    admin@srv-nso%
+</pre>
