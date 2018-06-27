@@ -1,6 +1,6 @@
 
 
-SN_PACKAGES = service-vrf vrf-ned
+SN_PACKAGES = vrf-service vrf-ned
 DN_PACKAGES = vrf 
 NEDS = cisco-iosxr
 
