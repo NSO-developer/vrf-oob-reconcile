@@ -5,7 +5,7 @@ all: fxs
 include $(NCS_DIR)/src/ncs/build/include.ncs.mk
 
 SRC = $(wildcard yang/*.yang)
-DIRS = ../load-dir java/src/$(JDIR)/$(NS)
+DIRS = ../load-dir ncsc-out java/src/$(JDIR)/$(NS)
 FXS = $(SRC:yang/%.yang=../load-dir/%.fxs)
 
 NCSCPATH   = $(YANGPATH:%=--yangpath %)
