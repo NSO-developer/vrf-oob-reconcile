@@ -7,8 +7,11 @@ NS  = namespaces
 
 SRC = $(wildcard yang/*.yang)
 FXS = $(SRC:yang/%.yang=ncsc-out/modules/fxs/%.fxs)
-
+DIRS = ../load-dir
 fxs:	ncsc-out/.done
+
+$(DIRS):
+	mkdir -p $@
 
 ncsc-out/.done:	$(SRC)
 	$(NCSC) --ncs-compile-bundle yang \
