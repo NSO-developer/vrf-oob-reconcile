@@ -27,7 +27,9 @@ the following components.
    Download and uncompress a copy of the cisco-iosxr NED and place in the
    device-node/packages directory
 
-   make -C packages/tailf-ntool/src clean all
+   from the top level directory simply type the following:
+
+   make clean all
 
 # Running the demonstration
 
